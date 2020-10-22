@@ -1,27 +1,15 @@
 # CA472 template repo
 
-This is a template for CA472 projects.
+A brief description of our project idea:
 
-## 1. Create your repo
+Our project idea is about introducing a website/application where users can create an account or login and given there current location or any location,
+the user can select a certain time & date and see the available gym/fitness class etc. slots available. 
+The user can benefit from not having to pay expensive gym membership fees and just a once off fee for that slot they have selected,
+or for example if their own gym is fully booked up. 
+Alternatively they will pay a membership fee to the app which we allow them to go to any of the signed up gyms without having to the one time payment,
+but some gyms/fitness classes may have varied charges.
 
-One person from your project team should fork this repo, then add other teammates as project members on GitLab.
 
-## 2. Name your repo appropriately
-
-The name of your project must be of the form `2021-ca472-XXXXXXX`, where "`XXXXXXX`"
-should be replaced with your usernames (e.g. `2021-ca472-ghealy-pclark-sblott`).
-
-It is the *name of your repo* which matters (not the name of your project).
-
-You can change the name of your repo on GitLab under:
-
-- Settings / General / Advanced / Change path
-
-It looks like this:
-
-![change-repo-path](./res/repo-change-path.png "Change repo path.")
-
-You should replace all of this file with a README describing your own project.
 
 ## Additional resources
 
