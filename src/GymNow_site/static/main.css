@@ -1,0 +1,30 @@
+body{
+    background:#ddd;
+    }
+    .form-control-borderless {
+        border: none;
+    }
+    
+    .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+.search_bar{
+    width:50%;
+    position: absolute;
+    z-index:1;
+    top: 91px;
+    left: 5%;
+    /* margin-left: -0.5%; */
+}
+
+}
+}
+
+.carousel-item {
+    height: 60%;
+    background: #777;
+
+}
