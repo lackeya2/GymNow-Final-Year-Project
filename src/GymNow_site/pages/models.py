@@ -26,6 +26,7 @@ class Bookings(models.Model):
         ('Personal Trainer', 'Personal Trainer'),
         ('Pilates', 'Pilates'),
         ('Yoga', 'Yoga'),
+        ('Crossfit', 'Crossfit'),
         )
 
     name = models.CharField(max_length=200, null=True)
