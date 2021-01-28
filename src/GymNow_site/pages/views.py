@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
 
 
 # Create your views here.
@@ -12,3 +13,7 @@ def login_page(request):
 
 def contact_us(request):
     return render(request, "pages/contact.html")
+
+def bookings(request):
+    bookings = Bookings.objects.all()
+    return render(request, "pages/bookings.html", {"bookings":bookings})

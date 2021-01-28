@@ -10,5 +10,3 @@ admin.site.register(Business_Owner)
 admin.site.register(Bookings)
 admin.site.register(Bookings_Order)
 
-
-
