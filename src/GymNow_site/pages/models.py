@@ -11,8 +11,37 @@ class Customer(models.Model):
         return self.customer_name
 
 class Business_Owner(models.Model):
+    LOCATION = (
+        ('Cavan', 'Cavan'),
+        ('Clare', 'Clare'),
+        ('Cork', 'Cork'),
+        ('Donegal', 'Donegal'),
+        ('Dublin', 'Dublin'),
+        ('Galway', 'Galway'),
+        ('Kerry', 'Kerry'),
+        ('Kildare', 'Kildare'),
+        ('Kilkenny', 'Kilkenny'),
+        ('Laois', 'Laois'),
+        ('Leitrim', 'Leitrim'),
+        ('Limerick', 'Limerick'),
+        ('Longford', 'Longford'),
+        ('Louth', 'Louth'),
+        ('Mayo', 'Mayo'),
+        ('Meath', 'Meath'),
+        ('Monaghan', 'Monaghan'),
+        ('Offaly', 'Offaly'),
+        ('Roscommon', 'Roscommon'),
+        ('Sligo', 'Sligo'),
+        ('Tipperary', 'Tipperary'),
+        ('Waterford', 'Waterford'),
+        ('Westmeath', 'Westmeath'),
+        ('Wexford', 'Wexford'),
+        ('Wicklow', 'Wicklow'),
+        )
+
     name = models.CharField(max_length=200, null=True)
     business_name = models.CharField(max_length=200, null=True)
+    location = models.CharField(max_length=200, null=True, choices= LOCATION)
     email = models.EmailField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
