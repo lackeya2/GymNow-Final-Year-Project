@@ -7,4 +7,5 @@ urlpatterns = [
     path('login_page/', views.login_page),
     path('contact_us/', views.contact_us),
     path('bookings/', views.bookings),
+    path('locations/', views.locations),
 ]

@@ -17,3 +17,7 @@ def contact_us(request):
 def bookings(request):
     bookings = Bookings.objects.all()
     return render(request, "pages/bookings.html", {"bookings":bookings})
+
+def locations(request):
+    locations = Location.objects.all()
+    return render(request, "pages/locations.html", {"locations":locations})

@@ -7,24 +7,22 @@
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <h4>Bookings</h4>
+            <h4>Locations</h4>
         </div>
         <div class="card card-body">
             <table class="table">
                 <tr>
-                    <th>Bookings</th>
+                    <th>Location</th>
+                    <th>Business Name</th>
                     <th>Category</th>
                     <th>Price</th>
-                    <th>Business Name</th>
-                    <th>Location</th>
                 </tr>
-                {% for i in bookings %}
+                {% for i in locations %}
                 <tr>
                     <td>{{i.name}}</td>
+                    <td>{{i.business_name}}</td>
                     <td>{{i.category}}</td>
                     <td>{{i.price}}</td>
-                    <td>{{i.business_name}}</td>
-                    <td>{{i.location}}</td>
                     
                 </tr>
                 {% endfor %}
