@@ -1,5 +1,7 @@
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'GymNow_site/main.css' %}" />
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/homepage/">GymNow</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,11 +13,14 @@
           <a class="nav-link" href="/homepage/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login_page/">Login/Register</a>
+          <a class="nav-link" href="/register_page/">Login/Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contact_us/">Contact Us</a>
         </li>
       </ul>
     </div>
+
+    <span class="nav-username"> {{request.user}} </span>
+    <span><a  class="nav-username" href="{% url 'logout' %}">Logout</a></span>
   </nav>

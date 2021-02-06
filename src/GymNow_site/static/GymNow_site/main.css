@@ -1,0 +1,83 @@
+body{
+    background:#ddd;
+    }
+/* .form-control-borderless{
+    border: none;
+}
+    
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus{
+    border: none;
+    outline: none;
+    box-shadow: none;
+} */
+
+.carousel .carousel-item {
+    height: 90vh;
+
+  }
+
+
+.carousel-caption {
+    top: 45%
+}
+
+.form_card {
+    width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #04eba5de;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+
+.forms_container {
+    margin-top: 20px;
+}
+
+#form-title{
+    color: #fff;
+}
+.login_button {
+    width: 100%;
+    background: #211a5c !important;
+    color: white !important;
+}
+.login_button:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #fceb02 !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+#messages {
+    background-color: rgb(72, 86, 90);
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.nav-username {
+    font-size: 20px;
+    color: #fff;
+    margin-right: 25px;
+}

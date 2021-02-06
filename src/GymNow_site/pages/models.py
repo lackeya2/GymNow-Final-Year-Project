@@ -122,6 +122,14 @@ class Bookings_Order(models.Model):
         return self.customer, self.business_name, self.booking, self.order_status
 
 
+# class CusotmerBookings(models.Model):
+#     customer_name = modles.ForeignKey(Customer, null=True, on_delete=models.CASCADE)
+#     business_name = models.ForeignKey(Business_Owner, null=True, on_delete = models.CASCADE)
+#     booking = models.ForeignKey(Bookings, on_delete= models.CASCADE)
+#     order_status = models.ForeignKey(order_status)
+
+
+
 
 
 
