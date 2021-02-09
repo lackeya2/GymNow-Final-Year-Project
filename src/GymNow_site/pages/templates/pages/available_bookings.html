@@ -16,11 +16,11 @@
                     <th>Business Name</th>
                     <th>Bookings</th>
                 </tr>
-                {% for i in business_owners %}
+                {% for i in available_bookings %}
                 <tr>
                     <td>{{i.location}}</td>
                     <td>{{i.business_name}}</td>
-                    <!-- this loops through avaible bookings -->
+                    <!-- this loops through each avaible booking for each gym-->
                     {% for available_bookings in i.available_bookings.all %}
                     <td>{{available_bookings}}</td>
                     {% endfor %}
