@@ -68,6 +68,10 @@ def locations(request):
     locations = Location.objects.all()
     return render(request, "pages/locations.html", {"locations":locations})
 
-# def customer_bookings(request):
-#     customer_bookings = CustomerBookings.objects.all()
-#     return render(request, "pages/customer_bookings.html", {"customer_bookings":customer_bookings})
+def customer_bookings(request):
+    customer_bookings = Customer_Bookings.objects.all()
+    return render(request, "pages/customer_bookings.html", {"customer_bookings":customer_bookings})
+
+def business_owners(request):
+    business_owners = Business_Owner.objects.all()    
+    return render(request, "pages/business_owners.html", {"business_owners": business_owners})

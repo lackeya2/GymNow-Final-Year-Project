@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact_us/', views.contact_us, name='contact_us'),
     path('bookings/', views.bookings, name='bookings'),
     path('locations/', views.locations, name='locations'),
-    # path('customer_bookings/', views.customer_bookings),
+    path('customer_bookings/', views.customer_bookings, name='customer_bookings'),
+    path('business_owners/', views.business_owners, name='business_owners'),
 
 ]
