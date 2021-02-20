@@ -1,4 +1,5 @@
 from django.db import models
+from djmoney.models.fields import MoneyField
 
 # Create your models here.
 class Customer(models.Model):
@@ -55,14 +56,14 @@ class Bookings(models.Model):
         ('Crossfit', 'Crossfit'),
         )
 
-    name = models.CharField(max_length=200, null=True)
-    price = models.FloatField(null=True)
-    description = models.CharField(max_length=200, null=True)
+    time = models.CharField(max_length=200, null=True)
+    price = MoneyField(max_digits=14, decimal_places=2, default_currency='EUR', default=0)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return self.name
+        template = '{0.category} {0.time} {0.price}' 
+        return template.format(self)
 
 class Business_Owner(models.Model):
     LOCATION = (
@@ -102,9 +103,15 @@ class Business_Owner(models.Model):
     available_bookings = models.ManyToManyField(Bookings)
 
     def __str__(self):
-        return self.business_name
+        template = '{0.business_name}' 
+        return template.format(self)
 
-class Bookings_Order(models.Model):
+    class Meta:
+        ordering = ['location']
+
+
+
+class Customer_Bookings(models.Model):
     STATUS = (
         ('Pending', 'Pending'),
         ('Paid', 'Paid'),
@@ -119,7 +126,8 @@ class Bookings_Order(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return self.customer, self.business_name, self.booking, self.order_status
+        template = '{0.customer} {0.business_name} {0.booking} {0.order_status}'
+        return template.format(self)
 
 
 # class CusotmerBookings(models.Model):
