@@ -11,6 +11,7 @@
         <div class="card card-body">
             {% for business_owner in business_owners %}
             <h5>{{business_owner.business_name}}</h5>
+            <h5>{{business_owner.location}}</h5>
 
         </div>
     </div>
@@ -28,26 +29,29 @@
             {% endfor %}
         </div>
     </div>
+    
+    <!-- <div class="owner-image">
+        <img src="{{business_owner.image.url }}">
+    </div> -->
+    
 </div>
 <br>
 
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <table class="table table-sm">
-                <tr>
-                    <th>Location</th>
+            <table class="table table-md">
                     <th>Bookings</th>
-                    <th>Book</th>
-                </tr>
 
                 {% for i in business_owners %}
 
-
                 <tr>
-                    <td>{{i.location}}</td>
                     {% for available_bookings in i.available_bookings.all %}
-                    <td>{{available_bookings}}</td>
+                    <td>{{available_bookings}}
+                        <div class="col-auto">
+                            <button class="btn btn-lg btn-primary" type="submit">Book</button>
+                        </div>
+                    </td>
                     {% endfor %}
                 </tr>
                 {% endfor %}
