@@ -19,7 +19,7 @@
                 {% for i in available_bookings %}
                 <tr>
                     <td>{{i.location}}</td>
-                    <td>{{i.business_name}}</td>
+                <td><a href='{{i.get_absolute_url}}'>{{i.business_name}}</a></td>
                     <!-- this loops through avaible bookings -->
                     {% for available_bookings in i.available_bookings.all %}
                     <td>{{available_bookings}}</td>

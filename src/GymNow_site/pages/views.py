@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
@@ -74,10 +74,10 @@ def customer_bookings(request):
 
 def available_bookings(request):
     available_bookings = Business_Owner.objects.all()    
-    return render(request, "pages/available_bookings.html", {"available_bookings": available_bookings})
+    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings})
 
     
 def business_owners(request, pk):
-    business_owners = Business_Owner.objects.filter(id=pk)   
-    return render(request, "pages/business_owners.html", {"business_owners": business_owners})
+    business_owners = Business_Owner.objects.filter(pk=pk)   
+    return render(request, "pages/business_owners.html", {"business_owners":business_owners})
 

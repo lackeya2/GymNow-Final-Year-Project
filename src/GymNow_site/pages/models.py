@@ -1,5 +1,6 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
+from django.urls import reverse
 
 # Create your models here.
 class Customer(models.Model):
@@ -103,6 +104,9 @@ class Business_Owner(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     available_bookings = models.ManyToManyField(Bookings)
     image = models.ImageField(blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse("business_owners", kwargs={"pk": self.pk})
 
     def __str__(self):
         template = '{0.business_name}' 
