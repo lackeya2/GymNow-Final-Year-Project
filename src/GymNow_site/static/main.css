@@ -68,3 +68,8 @@ body{
     box-shadow: none !important;
     outline: 0px !important;
 }
+
+.owner-image {
+    width: 350px;
+    height: 350px;
+}

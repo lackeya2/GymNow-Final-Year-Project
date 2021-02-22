@@ -1,0 +1,37 @@
+{% extends 'pages/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h4>Available Bookings</h4>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Location</th>
+                    <th>Business Name</th>
+                    <th>Bookings</th>
+                </tr>
+                {% for i in available_bookings %}
+                <tr>
+                    <td>{{i.location}}</td>
+                    <td>{{i.business_name}}</td>
+                    <!-- this loops through avaible bookings -->
+                    {% for available_bookings in i.available_bookings.all %}
+                    <td>{{available_bookings}}</td>
+                    {% endfor %}
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock%}

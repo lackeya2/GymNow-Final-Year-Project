@@ -38,6 +38,7 @@ class Location(models.Model):
         ('Westmeath', 'Westmeath'),
         ('Wexford', 'Wexford'),
         ('Wicklow', 'Wicklow'),
+        ('London', 'London')
         )
     
     name = models.CharField(max_length=200, null=True, choices=LOCATION)
@@ -101,6 +102,7 @@ class Business_Owner(models.Model):
     phone = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     available_bookings = models.ManyToManyField(Bookings)
+    image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         template = '{0.business_name}' 
@@ -122,7 +124,7 @@ class Customer_Bookings(models.Model):
     customer = models.ForeignKey(Customer, null=True, on_delete= models.CASCADE)
     business_name = models.ForeignKey(Business_Owner, null=True, on_delete = models.CASCADE)
     booking = models.ForeignKey(Bookings, on_delete= models.CASCADE)
-    order_status = models.CharField(max_length=200, null=True, choices=STATUS)
+    order_status = models.CharField(max_length=300, null=True, choices=STATUS)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
