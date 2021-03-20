@@ -6,6 +6,8 @@ from .forms import RegistrationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .filters import BusinessOwnerFilter
+from django.db.models import Q
 
 # Create your views here.
 def homepage(request):
@@ -73,9 +75,8 @@ def customer_bookings(request):
     return render(request, "pages/customer_bookings.html", {"customer_bookings":customer_bookings})
 
 def available_bookings(request):
-    available_bookings = Business_Owner.objects.all()    
-    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings})
-
+    available_bookings = Business_Owner.objects.all()
+    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings}) 
     
 def business_owners(request, pk):
     business_owners = Business_Owner.objects.filter(pk=pk)   

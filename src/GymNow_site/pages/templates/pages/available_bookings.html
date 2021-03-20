@@ -8,28 +8,37 @@
     <div class="col-md">
         <div class="card card-body">
             <h4>Available Bookings</h4>
+            <form method="get" action="{% url 'available_bookings' %}">
+                <input name="q" class="form-control form-control-lg form-control-borderless"
+                    placeholder="Search Locations...">
         </div>
-        <div class="card card-body">
-            <table class="table">
-                <tr>
-                    <th>Location</th>
-                    <th>Business Name</th>
-                    <th>Bookings</th>
-                </tr>
-                {% for i in available_bookings %}
-                <tr>
-                    <td>{{i.location}}</td>
-                <td><a href='{{i.get_absolute_url}}'>{{i.business_name}}</a></td>
-                    <!-- this loops through avaible bookings -->
-                    {% for available_bookings in i.available_bookings.all %}
-                    <td>{{available_bookings}}</td>
-                    {% endfor %}
-
-                </tr>
-                {% endfor %}
-            </table>
+        <!--end of col-->
+        <div class="col-auto">
+            <button class="btn btn-lg btn-primary" type="submit">Search</button>
         </div>
+        </form>
     </div>
+    <div class="card card-body">
+        <table class="table">
+            <tr>
+                <th>Location</th>
+                <th>Business Name</th>
+                <th>Bookings</th>
+            </tr>
+            {% for i in available_bookings %}
+            <tr>
+                <td>{{i.location}}</td>
+                <td><a href='{{i.get_absolute_url}}'>{{i.business_name}}</a></td>
+                <!-- this loops through avaible bookings -->
+                {% for available_bookings in i.available_bookings.all %}
+                <td>{{available_bookings}}</td>
+                {% endfor %}
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 
 </div>
 
