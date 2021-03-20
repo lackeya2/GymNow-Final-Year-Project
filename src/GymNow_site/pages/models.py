@@ -104,6 +104,7 @@ class Business_Owner(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     available_bookings = models.ManyToManyField(Bookings)
     image = models.ImageField(blank=True, null=True)
+    address = models.CharField(max_length=200, null=True)
 
     def get_absolute_url(self):
         return reverse("business_owners", kwargs={"pk": self.pk})
