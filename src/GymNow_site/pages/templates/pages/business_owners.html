@@ -6,42 +6,71 @@
 
 <br>
 
-<div class="row">
-    <div class="col-md">
-        <div class="card card-body">
-            {% for business_owner in business_owners %}
-            <h5>{{business_owner.business_name}}</h5>
-            <h5>{{business_owner.location}}</h5>
-
+<div class="row gutters-sm">
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-body">
+                {% for business_owner in business_owners %}
+                <div class="d-flex flex-column align-items-center text-center">
+                    <!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
+                    <div class="mt-3">
+                        <h4>{{business_owner.business_name}}</h4>
+                        <p class="text-secondary mb-1">{{business_owner.location}}</p>
+                        <!-- insert ratings here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="owner-image">
-        <img src="{{business_owner.image.url }}">
-    </div>
-
-    <div class="col-md">
-        <div class="card card-body">
-            <h5>Contact Information</h5>
-            <hr>
-            <p>Email: {{business_owner.email}}</p>
-            <p>Phone: {{business_owner.phone}}</p>
-            {% endfor %}
-        </div>
-    </div>
-    
-    <!-- <div class="owner-image">
-        <img src="{{business_owner.image.url }}">
-    </div> -->
-    
 </div>
-<br>
+
+<div class="business-info">
+    <div class="col-md-3">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{business_owner.email}}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{business_owner.phone}}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{business_owner.address}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% for business_owner in business_owners %}
+
+<div class="owner-image">
+    <img src="{{business_owner.image.url }}">
+</div>
+{% endfor %}
 
 <div class="row">
-    <div class="col-md">
+    <div class="col-md-8">
         <div class="card card-body">
             <table class="table table-md">
-                    <th>Bookings</th>
+                <th>Bookings</th>
 
                 {% for i in business_owners %}
 
@@ -60,5 +89,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
