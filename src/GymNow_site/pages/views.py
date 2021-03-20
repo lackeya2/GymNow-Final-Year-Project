@@ -76,7 +76,7 @@ def customer_bookings(request):
 
 def available_bookings(request):
     available_bookings = Business_Owner.objects.all()
-    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings}) 
+    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings}"") 
     
 def business_owners(request, pk):
     business_owners = Business_Owner.objects.filter(pk=pk)   
