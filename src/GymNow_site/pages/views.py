@@ -97,3 +97,5 @@ def business_owners(request, pk):
     business_owners = Business_Owner.objects.filter(pk=pk)   
     return render(request, "pages/business_owners.html", {"business_owners":business_owners})
 
+
+
