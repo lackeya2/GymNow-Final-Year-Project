@@ -59,13 +59,12 @@ class Bookings(models.Model):
         )
 
     time = models.CharField(max_length=200, null=True)
-    # price = MoneyField(max_digits=14, decimal_places=2, default_currency='EUR', default=0)
+    price = models.FloatField(default=0)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        template = '{0.category} {0.time} '
-        # {0.price}
+        template = '{0.category} {0.time} € {0.price}'
         return template.format(self)
 
 class Business_Owner(models.Model):
@@ -141,6 +140,7 @@ class Customer_Bookings(models.Model):
     booking = models.ForeignKey(Bookings, on_delete= models.CASCADE)
     order_status = models.CharField(max_length=300, null=True, choices=STATUS)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         template = '{0.customer} {0.business_name} {0.booking} {0.order_status}'
