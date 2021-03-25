@@ -47,7 +47,7 @@ body{
 }
 .login_button {
     width: 100%;
-    background: #0275d8 !important;
+    background: #50504e !important;
     color: white !important;
 }
 .login_button:focus {
@@ -76,6 +76,7 @@ body{
     margin-top: 10px;
 }
 
+<<<<<<< HEAD
 .card {
     position: relative;
     display: flex;
@@ -133,4 +134,8 @@ body{
 	height: 25px;
 	border-radius: 50%;
 	font-size: 14px;
+=======
+.ml-2 {
+    color: #0e0e03;
+>>>>>>> luke
 }

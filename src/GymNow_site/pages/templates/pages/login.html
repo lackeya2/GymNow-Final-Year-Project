@@ -18,13 +18,19 @@
     html {
         margin: 0;
         padding: 0;
-        height: 100%;
-        background: #287888 !important;
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url({% static 'GymNow_site/images/carosel_pic1.jpg' %});
     }
 </style>
 <!-- form navabar only has gymnow button  -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/homepage/">GymNow</a>
+    <a class="navbar-brand" href="/homepage/">
+        <img src="{% static 'GymNow_site/images/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+      GymNow
+      </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
