@@ -62,13 +62,26 @@ def contact_us(request):
 
 
 @login_required(login_url='login_page')
-def bookings(request):
-    bookings = Bookings.objects.all()
-    return render(request, "pages/bookings.html", {"bookings":bookings})
+def cart(request):
+	data = cartData(request)
 
-def locations(request):
-    locations = Location.objects.all()
-    return render(request, "pages/locations.html", {"locations":locations})
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	return render(request, 'store/cart.html', context)
+
+def checkout(request):
+	data = cartData(request)
+	
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	return render(request, 'store/checkout.html', context)
+
 
 def customer_bookings(request):
     customer_bookings = Customer_Bookings.objects.all()
@@ -76,7 +89,9 @@ def customer_bookings(request):
 
 def available_bookings(request):
     available_bookings = Business_Owner.objects.all()
-    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings}) 
+    myFilter = BusinessOwnerFilter(request.GET, queryset=available_bookings)
+    available_bookings = myFilter.qs
+    return render(request, "pages/available_bookings.html", {"available_bookings":available_bookings, "myFilter":myFilter}) 
     
 def business_owners(request, pk):
     business_owners = Business_Owner.objects.filter(pk=pk)   

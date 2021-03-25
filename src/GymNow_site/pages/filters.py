@@ -1,10 +1,13 @@
 import django_filters
+from django_filters import CharFilter
 
 from .models import *
 
 class BusinessOwnerFilter(django_filters.FilterSet):
+    location = CharFilter(field_name="location", lookup_expr='icontains')
+    category = CharFilter(field_name="category", lookup_expr='icontains')
     class Meta:
         model = Business_Owner
-        fields ='__all__'
-        exclude = ['image']
+        fields = ['location', 'category' ]
+        exclude = ['image', 'name', 'business_name', 'email', 'phone']
         
