@@ -8,3 +8,17 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
  
+class MembershipForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def save(self, commit=True):
+        user = super (MembershipForm , self ).save(commit=False)
+        user.username = self.cleaned_data ['username']
+        user.is_staff = True
+
+        if commit :
+            user.save()
+
+        return user

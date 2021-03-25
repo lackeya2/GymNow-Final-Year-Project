@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegistrationForm
+from .forms import MembershipForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -50,6 +51,21 @@ def register_page(request):
     context = {'RegForm': RegForm}
     return render(request, "pages/register.html", context)
 
+def membership_form(request):
+    MemForm = MembershipForm()
+
+    if request.method == 'POST':
+        MemForm = MembershipForm(request.POST)
+        if MemForm.is_valid():
+            MemForm.save()
+            user = MemForm.cleaned_data.get('username')
+            messages.success(request, 'Mmebership Account was created for ' + user )
+
+            return redirect('login_page')
+
+    context = {'MemForm': MemForm}
+    return render(request, "pages/membership_form.html", context)
+
 def LogOut(request):
 	logout(request)
 	return redirect('login_page')
@@ -96,6 +112,8 @@ def available_bookings(request):
 def business_owners(request, pk):
     business_owners = Business_Owner.objects.filter(pk=pk)   
     return render(request, "pages/business_owners.html", {"business_owners":business_owners})
+
+
 
 
 
