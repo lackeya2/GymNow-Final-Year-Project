@@ -24,11 +24,13 @@
 
 <div class="card card-body">
     <table class="table">
+        <thead class="table-dark">
         <tr>
             <th>Location</th>
             <th>Business Name</th>
             <th>Bookings</th>
         </tr>
+        </thead>
         {% for i in available_bookings %}
         <tr>
             <td>{{i.location}}</td>
