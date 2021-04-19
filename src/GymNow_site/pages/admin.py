@@ -7,6 +7,8 @@ from .models import *
 
 admin.site.register(Customer)
 admin.site.register(Business_Owner)
-admin.site.register(Bookings)
-admin.site.register(Customer_Bookings)
+admin.site.register(Booking)
+admin.site.register(CustomerBooking)
 admin.site.register(Location)
+admin.site.register(Business)
+admin.site.register(BookingItem)
