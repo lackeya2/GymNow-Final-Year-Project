@@ -158,6 +158,18 @@ class CustomerBooking(models.Model):
         template = '{0.customer} {0.order_status}'
         return template.format(self)
 
+    @property
+    def get_cart_total(self):
+        bookingitems = self.bookingitem_set.all()
+        total = sum([item.get_total for item in bookingitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        bookingitems = self.bookingitem_set.all()
+        total = sum([item.quantity for item in bookingitems])
+        return total
+
 
 class BookingItem(models.Model):
     booking = models.ForeignKey(Booking, on_delete=models.SET_NULL, null=True)
