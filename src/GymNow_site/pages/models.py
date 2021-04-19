@@ -1,16 +1,17 @@
 from django.db import models
-from djmoney.models.fields import MoneyField
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 # Create your models here.
 class Customer(models.Model):
-    customer_name = models.CharField(max_length=200, null=True)
+    customer_name = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     email = models.EmailField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return self.customer_name
+        template = '{0.customer_name}'
+        return template.format(self)
 
 class Member(models.Model):
     member_name = models.CharField(max_length=200, null=True)
@@ -56,9 +57,13 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+class Business(models.Model):
+    name = models.CharField(max_length=200, null=True)
 
+    def __str__(self):
+        return self.name
 
-class Bookings(models.Model):
+class Booking(models.Model):
     CATEGORY = (
         ('Gym Booking', 'Gym Booking'),
         ('Personal Trainer', 'Personal Trainer'),
@@ -68,12 +73,13 @@ class Bookings(models.Model):
         )
 
     time = models.CharField(max_length=200, null=True)
+    business = models.ForeignKey(Business, null=True, on_delete=models.CASCADE)
     price = models.FloatField(default=0)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        template = '{0.category} {0.time} € {0.price}'
+        template = '{0.business} {0.category} {0.time} € {0.price}'
         return template.format(self)
 
 class Business_Owner(models.Model):
@@ -114,12 +120,12 @@ class Business_Owner(models.Model):
         )
 
     name = models.CharField(max_length=200, null=True)
-    business_name = models.CharField(max_length=200, null=True)
+    business_name = models.ForeignKey(Business, null=True, on_delete=models.CASCADE)
     location = models.CharField(max_length=200, null=True, choices= LOCATION)
     email = models.EmailField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    available_bookings = models.ManyToManyField(Bookings)
+    available_bookings = models.ManyToManyField(Booking)
     image = models.ImageField(blank=True, null=True)
     address = models.CharField(max_length=200, null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
@@ -134,9 +140,7 @@ class Business_Owner(models.Model):
     class Meta:
         ordering = ['location']
 
-
-
-class Customer_Bookings(models.Model):
+class CustomerBooking(models.Model):
     STATUS = (
         ('Pending', 'Pending'),
         ('Paid', 'Paid'),
@@ -144,16 +148,28 @@ class Customer_Bookings(models.Model):
         ('Cancelled', 'Cancelled'),
         )
     
-    customer = models.ForeignKey(Customer, null=True, on_delete= models.CASCADE)
-    business_name = models.ForeignKey(Business_Owner, null=True, on_delete = models.CASCADE)
-    booking = models.ForeignKey(Bookings, on_delete= models.CASCADE)
+    customer = models.ForeignKey(Customer, null=True, on_delete=models.CASCADE)
+    complete = models.BooleanField(default=False, null=True, blank=False)
     order_status = models.CharField(max_length=300, null=True, choices=STATUS)
-    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    date_ordered = models.DateTimeField(auto_now_add=True, null=True)
     transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        template = '{0.customer} {0.business_name} {0.booking} {0.order_status}'
+        template = '{0.customer} {0.order_status}'
         return template.format(self)
+
+
+class BookingItem(models.Model):
+    booking = models.ForeignKey(Booking, on_delete=models.SET_NULL, null=True)
+    customer_booking = models.ForeignKey(CustomerBooking, on_delete=models.SET_NULL, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    
+    @property
+    def get_total(self):
+        total = self.booking.price * self.quantity
+        return total
 
 
 # class CusotmerBookings(models.Model):
