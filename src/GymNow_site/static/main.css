@@ -102,7 +102,7 @@ body{
 	width: 12px;
 	cursor: pointer;
 	display: block;
-	margin-top: 5px;
+	margin-top: 1em;
 	transition:.1s;
 }
 

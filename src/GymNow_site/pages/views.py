@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegistrationForm
@@ -9,12 +9,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .filters import BusinessOwnerFilter
 from django.db.models import Q
+import json
 
 # Create your views here.
 
 
 def homepage(request):
-    return render(request, "pages/homepage.html")
+    customer = request.user.customer
+    customerbooking, created = CustomerBooking.objects.get_or_create(customer=customer, complete=False)
+    items = customerbooking.bookingitem_set.all()
+    cartItems = CustomerBooking.get_cart_items
+
+    context = {'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems}
+    return render(request, "pages/homepage.html", context)
 
 
 def login_page(request):
@@ -92,10 +99,11 @@ def cart(request):
         customer = request.user.customer
         customerbooking, created = CustomerBooking.objects.get_or_create(customer=customer, complete=False)
         items = customerbooking.bookingitem_set.all()
+        cartItems = CustomerBooking.get_cart_items
     else:
         items =[]
         customerbooking = {'get_cart_total':0, 'get_cart_items':0}
-    context = {'items':items, 'customerbooking':customerbooking}
+    context = {'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems}
     return render(request, 'pages/cart.html', context)
 
 @login_required(login_url='login_page')
@@ -104,25 +112,59 @@ def checkout(request):
         customer = request.user.customer
         customerbooking, created = CustomerBooking.objects.get_or_create(customer=customer, complete=False)
         items = customerbooking.bookingitem_set.all()
+        cartItems = CustomerBooking.get_cart_items
     else:
         items =[]
         customerbooking = {'get_cart_total':0, 'get_cart_items':0}
-    context = {'items':items, 'customerbooking':customerbooking}
+    context = {'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems}
     return render(request, 'pages/checkout.html', context)
 
 
-def customer_bookings(request):
-    customer_bookings = CustomerBooking.objects.all()
-    return render(request, "pages/customer_bookings.html", {"customer_bookings": customer_bookings})
+def UpdateBooking(request):
+    data = json.loads(request.body)
+    bookingId = data['bookingId']
+    action = data['action']
+    print('Action:', action)
+    print('Booking:', bookingId)
+
+    customer = request.user.customer
+    booking = Booking.objects.get(id=bookingId)
+    customer_booking, created = CustomerBooking.objects.get_or_create(customer=customer, complete=False)
+
+    bookingItem, created = BookingItem.objects.get_or_create(customer_booking=customer_booking, booking=booking)
+
+    if action == 'add':
+        bookingItem.quantity = (bookingItem.quantity + 1)
+    elif action == 'remove':
+        bookingItem.quantity = (bookingItem.quantity - 1)
+        
+    bookingItem.save()
+    
+    if bookingItem.quantity <= 0:
+        bookingItem.delete()
+        
+    return JsonResponse('Booking was added', safe=False)
 
 
 def available_bookings(request):
     available_bookings = Business_Owner.objects.all()
     myFilter = BusinessOwnerFilter(request.GET, queryset=available_bookings)
     available_bookings = myFilter.qs
-    return render(request, "pages/available_bookings.html", {"available_bookings": available_bookings, "myFilter": myFilter})
+    customer = request.user.customer
+    customerbooking, created = CustomerBooking.objects.get_or_create(customer=customer, complete=False)
+    items = customerbooking.bookingitem_set.all()
+    cartItems = CustomerBooking.get_cart_items
+
+    context = {"available_bookings": available_bookings, "myFilter": myFilter ,'items':items, 'customerbooking':customerbooking, "cartItems":cartItems}
+    return render(request, "pages/available_bookings.html", context )
 
 
 def business_owners(request, pk):
     business_owners = Business_Owner.objects.filter(pk=pk)
-    return render(request, "pages/business_owners.html", {"business_owners": business_owners})
+    customer = request.user.customer
+    customerbooking, created = CustomerBooking.objects.get_or_create(customer=customer, complete=False)
+    items = customerbooking.bookingitem_set.all()
+    cartItems = CustomerBooking.get_cart_items
+
+    context = {"business_owners": business_owners, 'items':items, 'customerbooking':customerbooking, "cartItems":cartItems }
+    return render(request, "pages/business_owners.html", context)

@@ -54,7 +54,8 @@
                 <div class="card-body">
                     {% for available_bookings in i.available_bookings.all %}
                     <p class="card-text">{{available_bookings}}</p>
-                    <button data-booking= class="btn btn-primary add-btn update-cart"> Book</button>
+                    <button data-booking="{{available_bookings.id}}" data-action="add"
+                    class="btn btn-primary add-btn update-cart"> Book</button>
                     {% endfor %}
                 </div>
                 <a href=" {% url 'cart' %}" class="btn btn-primary">Shopping cart</a>
