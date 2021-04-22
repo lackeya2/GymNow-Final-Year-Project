@@ -1,6 +1,20 @@
 {% extends 'pages/main.html' %}
 
+{% load static %}
+
 {% block content %}
+
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url({% static 'GymNow_site/images/available-bookings.jpg' %});
+    }
+</style>
 
 <br>
 
