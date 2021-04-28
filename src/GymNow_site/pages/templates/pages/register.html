@@ -62,6 +62,18 @@
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            {{RegForm.full_name}}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            {{RegForm.phone_number}}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             {{RegForm.password1}}
@@ -95,8 +107,10 @@
         var form_fields = document.getElementsByTagName('input')
         form_fields[1].placeholder = 'Username..';
         form_fields[2].placeholder = 'Email..';
-        form_fields[3].placeholder = 'Enter password...';
-        form_fields[4].placeholder = 'Re-enter Password...';
+        form_fields[3].placeholder = 'Enter Full Name...';
+        form_fields[4].placeholder = 'Enter Phone Number...';
+        form_fields[5].placeholder = 'Enter password...';
+        form_fields[6].placeholder = 'Re-enter Password...';
 
 
         for (var field in form_fields) {

@@ -13,6 +13,11 @@ urlpatterns = [
     path('membership_form/', views.membership_form, name='membership_form'),
     path('business_owners/<str:pk>/', views.business_owners, name='business_owners'),
     path('available_bookings/', views.available_bookings, name='available_bookings'),
+    path('UpdateCart/', views.UpdateCart, name='UpdateCart'),
+    path('customer/', views.customer, name='customer'),
+    path('completeOrder/', views.completeOrder, name='completeOrder'),
     path('UpdateBooking/', views.UpdateBooking, name='UpdateBooking'),
+
+
 
 ]

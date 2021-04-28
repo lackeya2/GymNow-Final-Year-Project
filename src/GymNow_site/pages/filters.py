@@ -10,4 +10,9 @@ class BusinessOwnerFilter(django_filters.FilterSet):
         model = Business_Owner
         fields = ['location', 'category' ]
         exclude = ['image', 'name', 'business_name', 'email', 'phone']
+
+class CustomerBookingFilter(django_filters.FilterSet):
+	class Meta:
+		model = CustomerBooking
+		fields = '__all__'
         
