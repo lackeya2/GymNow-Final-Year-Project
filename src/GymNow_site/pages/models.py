@@ -143,7 +143,7 @@ class Business_Owner(models.Model):
         ('Crossfit', 'Crossfit'),
         )
 
-    name = models.CharField(max_length=200, null=True)
+    business_owner = models.ForeignKey(Customer, null=True, on_delete=models.CASCADE)
     business_name = models.ForeignKey(Business, null=True, on_delete=models.CASCADE)
     location = models.CharField(max_length=200, null=True, choices= LOCATION)
     email = models.EmailField(max_length=200, null=True)

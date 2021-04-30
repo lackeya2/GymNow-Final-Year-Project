@@ -1,0 +1,111 @@
+{% extends 'pages/main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<br>
+
+<!-- Profile Content Container -->
+<div class="business-profile">
+    <div class="container">
+        <div class="row profile">
+            <!-- Left Display -->
+            <div class="col-md-5">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <!-- Displays Profile Picture linked to User Account -->
+                            <img src={{business.image.url}} alt="" class="rounded-circle" width="150" height="150">
+                            <div class="mt-3">
+                                <h4> {{ business.business_name}}</h4>
+                                <p class="text-secondary mb-1"> {{ business.location }} </p>
+                                <p class="text-muted font-size-sm"> {{ business.email }} </p>
+                                <p class="text-muted font-size-sm"> {{ business.phone }} </p>
+
+                                <!-- Modal Trigger Button for Edit Profile -->
+                                <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                    data-target="#UpdateBusinessModal">
+                                    Edit Profile
+                                </button>
+
+
+                                <!-- Edit Profile Modal -->
+                                <div class="modal fade" id="UpdateBusinessModal" tabindex="-1"
+                                    aria-labelledby="Update-Business-Modal" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="Update-Business-Modal"> Edit Business </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <!-- Modal Body Content -->
+                                            <div class="modal-body">
+                                                <form action="" method="POST" enctype="multipart/form-data">
+                                                    <!-- CSRF token is used to prevent Cross Site Request Forgeries, needed for protection against malicious attacks -->
+                                                    {% csrf_token %}
+                                                    <!-- First Name Field -->
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-user"></i></span>
+                                                        </div>
+                                                        {{ form.business_name }}
+                                                    </div>
+                                                    <!-- Locatiom Field -->
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-address-card"></i></span>
+                                                        </div>
+                                                        {{ form.location }}
+                                                    </div>
+                                                    <!--  Email Field -->
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-envelope"></i></span>
+                                                        </div>
+                                                        {{ form.email }}
+                                                    </div>
+                                                    <!-- Phone Field -->
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-phone"></i></span>
+                                                        </div>
+                                                        {{ form.phone }}
+                                                    </div>
+                                                    <!-- Business Picture Field -->
+                                                    <div class="input-group mb-2" enctype="multipart/form-data">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-image"></i></span>
+                                                        </div>
+                                                        {{ form.image }}
+                                                    </div>
+                                                    {{ form.errors }}
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal"> Close </button>
+                                                        <button type="submit" class="btn btn-primary"> Save </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

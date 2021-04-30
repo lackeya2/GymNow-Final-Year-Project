@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegistrationForm
-from .forms import MembershipForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -168,6 +167,22 @@ def UpdateBooking(request):
         
     return JsonResponse('Booking was Deleted', safe=False)
 
+@login_required(login_url='login_page')
+def BusinessProfile(request):
+    user = Customer.objects.get(user=request.user)
+    business = Business_Owner.objects.get(business_owner=user)
+
+    form = BusinessProfileForm(request.POST,  instance=user)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+
+    context = {'user':user, 'business':business, 'form':form}
+
+    return render(request, 'pages/BusinessProfile.html', context)
+
+
 
 def available_bookings(request):
     if request.user.is_authenticated:
@@ -208,6 +223,9 @@ def business_owners(request, pk):
     context = {"business_owners": business_owners, 'items':items, 'customerbooking':customerbooking, "cartItems":cartItems }
     return render(request, "pages/business_owners.html", context)
 
+
+
+@login_required(login_url='login_page')
 def customer(request):
     if request.user.is_authenticated:
         user = Customer.objects.get(user=request.user)
