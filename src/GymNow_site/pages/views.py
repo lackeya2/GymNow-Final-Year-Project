@@ -93,9 +93,11 @@ def LogOut(request):
 #  otherwise redirects to login page
 
 
-@login_required(login_url='login_page')
 def contact_us(request):
     return render(request, "pages/contact.html")
+
+def Enroll_business(request):
+    return render(request, "pages/Enroll_business.html")
 
 
 @login_required(login_url='login_page')
@@ -205,7 +207,7 @@ def available_bookings(request):
     context = {"available_bookings": available_bookings, "myFilter": myFilter ,'items':items, 'customerbooking':customerbooking, "cartItems":cartItems}
     return render(request, "pages/available_bookings.html", context )
 
-
+@login_required(login_url='login_page')
 def business_owners(request, pk):
     if request.user.is_authenticated:
         business_owners = Business_Owner.objects.filter(pk=pk)
