@@ -12,13 +12,14 @@ body{
 } */
 
 .carousel .carousel-item {
-    height: 90vh;
+    height: 100vh;
+    background-size: cover;
 
   }
 
 
 .carousel-caption {
-    top: 45%;
+    top: 30%;
     background: rgba(0, 0, 0, 0.30);
     
 }

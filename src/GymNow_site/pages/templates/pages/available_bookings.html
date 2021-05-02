@@ -9,6 +9,7 @@
     html {
         margin: 0;
         padding: 0;
+        height: 100%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -19,7 +20,7 @@
 <br>
 
 <div class="row">
-    <div class="col">
+    <div class="col-sm-2">
         <div class="card card-body">
 
             <form method="get">
@@ -38,8 +39,8 @@
 
 <div class="card card-body">
 
-    <table class="table">
-        <thead class="table-dark">
+    <table class="table table-dark">
+        <thead>
         <tr>
             <th>Location</th>
             <th>Business Name</th>
@@ -47,6 +48,7 @@
         </tr>
         </thead>
         {% for i in available_bookings %}
+
         <tr>
             <td>{{i.location}}</td>
             <td><a href='{{i.get_absolute_url}}'>{{i.business_name}}</a></td>
