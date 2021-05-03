@@ -31,7 +31,6 @@ class MembershipForm(UserCreationForm):
 
 
 class BusinessProfileForm(forms.ModelForm): 
-    business_name = forms.CharField(widget=forms.Textarea(attrs={'rows':1, 'placeholder': 'Business Name',}))
     location = forms.CharField(widget=forms.Textarea(attrs={'rows':1, 'placeholder': 'Location',}))
     image = forms.ImageField()
     email = forms.CharField(widget=forms.Textarea(attrs={'rows':4,'placeholder': 'Email',}))
@@ -43,4 +42,4 @@ class BusinessProfileForm(forms.ModelForm):
     
     class Meta:
         model = Business_Owner
-        fields = ('business_name', 'location', 'image', 'email', 'phone', 'description')
+        fields = ('location', 'image', 'email', 'phone', 'description')

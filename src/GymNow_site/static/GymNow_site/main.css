@@ -185,7 +185,6 @@ input[type="radio"] {
 .bold {
     font-weight: bold
 }
-
 .box-element{
 	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
 	background-color: #fff;
@@ -209,19 +208,4 @@ input[type="radio"] {
 	display: inline-block;
 	font-weight: 700;
 	padding-right:10px;
-	
-
 }
-
-.chg-quantity{
-	width: 12px;
-	cursor: pointer;
-	display: block;
-	margin-top: 1em;
-	transition:.1s;
-}
-
-.chg-quantity:hover{
-	opacity: .6;
-}
-
