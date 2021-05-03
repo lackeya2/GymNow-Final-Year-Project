@@ -176,13 +176,15 @@ def BusinessProfile(request):
     user = Customer.objects.get(user=request.user)
     business = Business_Owner.objects.get(business_owner=user)
 
-    form = BusinessProfileForm(request.POST,  instance=user)
+    form = BusinessProfileForm(request.POST or None, request.FILES or None, instance=business)
+    confirm = False
 
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            confirm = True
 
-    context = {'user':user, 'business':business, 'form':form}
+    context = {'user':user, 'confirm':confirm, 'business':business, 'form':form}
 
     return render(request, 'pages/BusinessProfile.html', context)
 
