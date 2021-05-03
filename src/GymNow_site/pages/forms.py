@@ -36,10 +36,11 @@ class BusinessProfileForm(forms.ModelForm):
     image = forms.ImageField()
     email = forms.CharField(widget=forms.Textarea(attrs={'rows':4,'placeholder': 'Email',}))
     phone = forms.CharField(widget=forms.Textarea(attrs={'rows':1, 'placeholder': 'Phone'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows':1, 'placeholder': 'Business Description'}))
     # available_bookings = forms.ModelMultipleChoiceField(
     #     queryset=Booking.objects.all(),
     #     widget=forms.CheckboxSelectMultiple)
     
     class Meta:
         model = Business_Owner
-        fields = ('business_name', 'location', 'image', 'email', 'phone')
+        fields = ('business_name', 'location', 'image', 'email', 'phone', 'description')

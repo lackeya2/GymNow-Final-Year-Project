@@ -145,6 +145,7 @@ class Business_Owner(models.Model):
 
     business_owner = models.ForeignKey(Customer, null=True, on_delete=models.CASCADE)
     business_name = models.ForeignKey(Business, null=True, on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000, null=True)
     location = models.CharField(max_length=200, null=True, choices= LOCATION)
     email = models.EmailField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
