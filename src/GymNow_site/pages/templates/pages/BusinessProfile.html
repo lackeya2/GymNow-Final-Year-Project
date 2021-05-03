@@ -22,6 +22,7 @@
                                 <p class="text-secondary mb-1"> {{ business.location }} </p>
                                 <p class="text-muted font-size-sm"> {{ business.email }} </p>
                                 <p class="text-muted font-size-sm"> {{ business.phone }} </p>
+                                <p class="text-muted font-size-sm"> {{ business.description }} </p>
 
                                 <!-- Modal Trigger Button for Edit Profile -->
                                 <button type="button" class="btn btn-secondary" data-toggle="modal"
@@ -78,6 +79,14 @@
                                                                     class="fas fa-phone"></i></span>
                                                         </div>
                                                         {{ form.phone }}
+                                                    </div>
+                                                    <!-- Business Description Field -->
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-info"></i></span>
+                                                        </div>
+                                                        {{ form.description}}
                                                     </div>
                                                     <!-- Business Picture Field -->
                                                     <div class="input-group mb-2" enctype="multipart/form-data">

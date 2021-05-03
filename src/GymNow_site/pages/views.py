@@ -96,6 +96,8 @@ def LogOut(request):
 def contact_us(request):
     return render(request, "pages/contact.html")
 
+
+@login_required(login_url='login_page')
 def Enroll_business(request):
     return render(request, "pages/Enroll_business.html")
 
