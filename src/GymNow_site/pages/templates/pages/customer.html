@@ -48,8 +48,10 @@
 		<div class="col-sm-6">
 			<div class="card border border-dark shadow-0 mb-3" style="max-width: 18rem">
 				<div class="card-body">
+					<!-- loops through all customer bookings that are allocated to the logged in user -->
 					{% for customerbooking in customerbookings %}
 					<p class="card-text">{{customerbooking}}</p>
+					<!-- delete button for the customers booking, removes customer booking from users wallet -->
 					<button data-customerbooking="{{customerbooking.id}}" data-action="Delete"
 					class="btn btn-danger add-btn update-booking"> Delete Booking</button>
 					{% endfor %}

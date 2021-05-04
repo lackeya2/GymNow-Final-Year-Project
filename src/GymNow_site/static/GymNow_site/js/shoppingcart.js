@@ -1,6 +1,6 @@
 var updateBtns = document.getElementsByClassName('update-cart')
 
-// for loop which listens for a click on any page with bookings, gets bookingId and Action clicked
+// for loop which listens for update-cart button to be clicked on any page with bookings, gets bookingId and Action when clicked
 for (var i = 0; i < updateBtns.length; i++) {
     updateBtns[i].addEventListener('click', function () {
         var bookingId = this.dataset.booking
@@ -42,7 +42,7 @@ function updateUserBooking(bookingId, action) {
 }
 
 var updateBtns = document.getElementsByClassName('update-booking')
-
+// for loop which listens the update-booking to be clicked, gets customerbookingId and Action when clicked
 for (var i = 0; i < updateBtns.length; i++) {
     updateBtns[i].addEventListener('click', function () {
         var customerbookingId = this.dataset.customerbooking
@@ -60,7 +60,7 @@ for (var i = 0; i < updateBtns.length; i++) {
     })
 }
 
-
+// this function sends customerbookingId and action to the UpdateBooking View as a Json objecct
 function updateCustomerBooking(customerbookingId, action) {
     console.log('User is logged in, sending data...')
 
