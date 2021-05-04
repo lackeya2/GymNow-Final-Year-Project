@@ -1,0 +1,111 @@
+{% extends 'pages/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'GymNow_site/main.css' %}" />
+</head>
+
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        background-position: center;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url({% static 'GymNow_site/images/checkout.jpeg' %});
+    }
+</style>
+
+<!-- commented code below is user info from change this to credit card form -->
+
+
+<br>
+
+
+<form id="form">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box-element">
+                <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+                <hr>
+                <h4>Order Summary</h4>
+                <hr>
+                {% for item in items %}
+                <div class="cart-row">
+                    <div style="flex:2">
+                        <p>{{item.booking.business}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p>{{item.booking.time}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p>€{{item.booking.price|floatformat:2}}</p>
+                    </div>
+                    <div style="flex:1">
+                        <p>x{{item.quantity}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <h5>Items: {{customerbooking.get_cart_items}}</h5>
+                <h5>Total: Free With Membership
+                    <div class="card-footer">
+                        <button id="confirm-payment" type="button"
+                            class="subscribe btn btn-primary btn-block shadow-sm">
+                            Confirm
+                            Payment
+                        </button>
+                    </div>
+            </div>
+        </div>
+</form>
+
+<script type="text/javascript">
+
+    var total = '{{customerbooking.get_cart_total}}'
+
+
+    document.getElementById('confirm-payment').addEventListener('click', function (e) {
+        submitFormData()
+    })
+
+    function submitFormData() {
+        console.log('Payment button clicked')
+
+        var PaymentData = {
+            'total': total,
+        }
+
+        var url = "/completeOrder/"
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'applicaiton/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({ 'form': PaymentData}),
+
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                alert('Transaction completed');
+                window.location.href = "{% url 'customer' %}"
+
+            })
+    }
+
+
+
+
+</script>
+{% endblock content %}

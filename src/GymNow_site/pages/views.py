@@ -17,16 +17,18 @@ import datetime
 def homepage(request):
     if request.user.is_authenticated:
         user = Customer.objects.get(user=request.user)
-        customerbooking, created = CustomerBooking.objects.get_or_create(customer=user, complete=False)
+        customerbooking, created = CustomerBooking.objects.get_or_create(
+            customer=user, complete=False)
         items = customerbooking.bookingitem_set.all()
         cartItems = CustomerBooking.get_cart_items
 
     else:
         customerbooking = []
-        items =[]
+        items = []
         cartItems = []
 
-    context = {'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems}
+    context = {'items': items, 'customerbooking': customerbooking,
+        'cartItems': cartItems}
     return render(request, "pages/homepage.html", context)
 
 
@@ -107,27 +109,32 @@ def cart(request):
 
     if request.user.is_authenticated:
         user = Customer.objects.get(user=request.user)
-        customerbooking, created = CustomerBooking.objects.get_or_create(customer=user, complete=False)
+        customerbooking, created = CustomerBooking.objects.get_or_create(
+            customer=user, complete=False)
         items = customerbooking.bookingitem_set.all()
         cartItems = CustomerBooking.get_cart_items
     else:
-        items =[]
-        customerbooking = {'get_cart_total':0, 'get_cart_items':0}
-    context = {'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems}
+        items = []
+        customerbooking = {'get_cart_total': 0, 'get_cart_items': 0}
+    context = {'items': items, 'customerbooking': customerbooking,
+        'cartItems': cartItems}
     return render(request, 'pages/cart.html', context)
+
 
 @login_required(login_url='login_page')
 def checkout(request):
-    if request.user.is_authenticated:
+    if request.user.is_staff:
         user = Customer.objects.get(user=request.user)
         customerbooking, created = CustomerBooking.objects.get_or_create(customer=user, complete=False)
         items = customerbooking.bookingitem_set.all()
         cartItems = CustomerBooking.get_cart_items
+        return render(request, 'pages/membership_checkout.html', {'items': items, 'customerbooking': customerbooking, 'cartItems': cartItems})
     else:
-        items =[]
-        customerbooking = {'get_cart_total':0, 'get_cart_items':0}
-    context = {'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems}
-    return render(request, 'pages/checkout.html', context)
+        user = Customer.objects.get(user=request.user)
+        customerbooking, created = CustomerBooking.objects.get_or_create(customer=user, complete=False)
+        items = customerbooking.bookingitem_set.all()
+        cartItems = CustomerBooking.get_cart_items
+        return render(request, 'pages/checkout.html',{'items':items, 'customerbooking':customerbooking, 'cartItems':cartItems})
 
 
 def UpdateCart(request):
