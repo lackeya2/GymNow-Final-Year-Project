@@ -4,6 +4,22 @@
 
 {% load static %}
 
+<html>
+
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'GymNow_site/main.css' %}" />
+
+    <!--  Registraion Form styling based on https://jsfiddle.net/ivanov11/hzf0jxLg/  -->
+</head>
+
+
 <style>
     body,
     html {
@@ -19,108 +35,102 @@
 
 <br>
 
-<!-- Profile Content Container -->
-<div class="business-profile align-items-center">
-    <div class="container">
-        <div class="row profile">
-            <!-- Left Display -->
-            <div class="col-md-12">
-                <div class="card shadow-lg p-6 mb-2 bg-white rounded">
-                    <div class="card-body">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <!-- Displays Business Profile Picture linked to User Account -->
-                            <img src={{business.image.url}} alt="" class="rounded-circle" width="150" height="150">
-                            <div class="mt-3">
-                                <h4> {{ business.business_name}}</h4>
-                                <p class="text-secondary mb-1"> {{ business.location }} </p>
-                                <p class="text-muted font-size-sm"> {{ business.email }} </p>
-                                <p class="text-muted font-size-sm"> {{ business.phone }} </p>
-                                <p class="text-muted font-size-sm"> {{ business.description }} </p>
-
-                                <!-- Modal Trigger Button for Edit Profile -->
-                                <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                    data-target="#UpdateBusinessModal">
-                                    Edit Profile
-                                </button>
-
-
-                                <!-- Edit Profile Modal -->
-                                <div class="modal fade" id="UpdateBusinessModal" tabindex="-1"
-                                    aria-labelledby="Update-Business-Modal" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg ">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="Update-Business-Modal"> Edit Business </h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+<body>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box-element">
+                <div class="d-flex flex-column align-items-center text-center">
+                    <img src={{business.image.url}} alt="" width="150" height="150">
+                    <h4> {{ business.business_name}}</h4>
+                    <p class="text-secondary mb-1"> {{ business.location }} </p>
+                    <p class="text-muted font-size-sm"> {{ business.email }} </p>
+                    <p class="text-muted font-size-sm"> {{ business.phone }} </p>
+                    <p class="text-muted font-size-sm"> {{ business.description }} </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-6">
+            <div class="container py-2">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h3>Edit Profile</h3>
+                            </div>
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                             </div>
-                                            <!-- Modal Body Content -->
-                                            <div class="modal-body">
-                                                <form action="" method="POST" enctype="multipart/form-data">
-                                                    <!-- CSRF token is used to prevent Cross Site Request Forgeries, needed for protection against malicious attacks -->
-                                                    {% csrf_token %}
-                                                    </div>
-                                                    <!-- Locatiom Field -->
-                                                    <div class="input-group mb-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-address-card"></i></span>
-                                                        </div>
-                                                        {{ form.location }}
-                                                    </div>
-                                                    <!--  Email Field -->
-                                                    <div class="input-group mb-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-envelope"></i></span>
-                                                        </div>
-                                                        {{ form.email }}
-                                                    </div>
-                                                    <!-- Phone Field -->
-                                                    <div class="input-group mb-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-phone"></i></span>
-                                                        </div>
-                                                        {{ form.phone }}
-                                                    </div>
-                                                    <!-- Business Description Field -->
-                                                    <div class="input-group mb-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-info"></i></span>
-                                                        </div>
-                                                        {{ form.description}}
-                                                    </div>
-                                                    <!-- Business Picture Field -->
-                                                    <div class="input-group mb-2" enctype="multipart/form-data">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-image"></i></span>
-                                                        </div>
-                                                        {{ form.image }}
-                                                    </div>
-                                                    {{ form.errors }}
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal"> Close </button>
-                                                        <button type="submit" class="btn btn-primary"> Save </button>
-                                                    </div>
-                                                </form>
+                                            {{ form.location }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                             </div>
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                            {{ form.phone }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="input-group input-group-lg">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="fas fa-info"></i></span>
+                                            </div>
+                                            {{ form.description}}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <div class="input" enctype="multipart/form-data">
+                                            </div>
+                                            {{ form.image }}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+
+        //Query All input fields
+        var form_fields = document.getElementsByTagName('input')
+        form_fields[1].placeholder = 'Business Location..';
+        form_fields[2].placeholder = 'Business Email..';
+        form_fields[3].placeholder = 'Business Phone Number...';
+        form_fields[4].placeholder = 'Edit Business Description...';
 
 
-{% endblock%}
+
+        for (var field in form_fields) {
+            form_fields[field].className += ' form-control'
+        }
+    </script>
+</body>
+
+</html>
+
+{% endblock content %}
