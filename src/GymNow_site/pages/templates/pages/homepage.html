@@ -4,13 +4,16 @@
 
 {% load static %}
 
-<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+
+<!-- homepage carosuel -->
+<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5500">
     <ol class="carousel-indicators">
         <li data-target="#carousel" data-slide-to="0" class="active"></li>
         <li data-target="#carousel" data-slide-to="1"></li>
         <li data-target="#carousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
+        <!-- first image in the slide show with link to avaolable bookings-->
         <div class="carousel-item active">
             <picture>
                 <img class="d-block img-fluid" src="{% static 'GymNow_site/images/carosel_pic1.jpg' %}"
@@ -21,12 +24,12 @@
                 <div>
                     <h2>FIND BOOK TRAIN</h2>
                     <p>We offer 150 locations in 28 counties</p>
-                    <a class="btn btn-primary btn-lg" href="/available_bookings/" role="button">Book Now</a>                    <!-- <a href="/available_bookings/">Book Now</a>
-                    <span class="btn btn-sm btn-primary"></span> -->
+                    <a class="btn btn-primary btn-lg" href="/available_bookings/" role="button">Book Now</a>
                 </div>
             </div>
             </a>
         </div>
+        <!-- second image in the slide show with link to membership sign up -->
         <div class="carousel-item">
             <picture>
                 <img class="d-block img-fluid" src="{% static 'GymNow_site/images/carosel_pic2.jpg' %}"
@@ -44,7 +47,7 @@
             </div>
             </a>
         </div>
-        <!-- /.carousel-item -->
+       <!-- third image in the slide show with link to enroll business -->
         <div class="carousel-item">
             <picture>
                 <img class="d-block img-fluid" src="{% static 'GymNow_site/images/carosel_pic3.jpg' %}"

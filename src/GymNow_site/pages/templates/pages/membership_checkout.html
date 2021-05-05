@@ -26,12 +26,11 @@
     }
 </style>
 
-<!-- commented code below is user info from change this to credit card form -->
 
 
 <br>
 
-
+<!-- membership checkout form, same as checkout requirment to fill out credit card form -->
 <form id="form">
     <div class="row">
         <div class="col-sm-6">
@@ -40,6 +39,7 @@
                 <hr>
                 <h4>Order Summary</h4>
                 <hr>
+                <!-- loops through all the items (which are the addded bookings) in the cart -->
                 {% for item in items %}
                 <div class="cart-row">
                     <div style="flex:2">
@@ -57,6 +57,7 @@
                 </div>
                 {% endfor %}
                 <h5>Items: {{customerbooking.get_cart_items}}</h5>
+                <!-- Total cost is displayed Free to membership for membership holders -->
                 <h5>Total: Free With Membership
                     <div class="card-footer">
                         <button id="confirm-payment" type="button"
@@ -73,18 +74,18 @@
 
     var total = '{{customerbooking.get_cart_total}}'
 
-
+// listen for the confirm-payment button to be clicked and submits the data placed into the form when clicked
     document.getElementById('confirm-payment').addEventListener('click', function (e) {
         submitFormData()
     })
 
     function submitFormData() {
         console.log('Payment button clicked')
-
+// sets the cart total as the data for the total variable
         var PaymentData = {
             'total': total,
         }
-
+// this post the data from the checkout to the completeOrder view as a JSON string
         var url = "/completeOrder/"
         fetch(url, {
             method: 'POST',
@@ -95,6 +96,7 @@
             body: JSON.stringify({ 'form': PaymentData}),
 
         })
+         // after completion of this a transcation complete messege is shown a user redirected to their wallet
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);

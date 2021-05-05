@@ -9,6 +9,7 @@
 <div class="card-deck">
     <div class="card">
         <div class="card-body">
+            <!-- for loop for the business owner model -->
             {% for business_owner in business_owners %}
             <h3 class="card-title">{{business_owner.business_name}}</h3>
             <p class="card-text">{{business_owner.location}}</p>
@@ -55,6 +56,7 @@
                 <div class="card-body">
                     {% for available_bookings in i.available_bookings.all %}
                     <p class="card-text">{{available_bookings}}</p>
+                    <!-- button adds selected availble booking to customers cart -->
                     <button data-booking="{{available_bookings.id}}" data-action="add"
                     class="btn btn-primary add-btn update-cart"> Book</button>
                     {% endfor %}

@@ -22,7 +22,7 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="card card-body">
-
+            <!-- location and booking category filter -->
             <form method="get">
                 {{myFilter.form.as_p}}
 
@@ -47,12 +47,13 @@
             <th>Bookings</th>
         </tr>
         </thead>
+        <!-- for loop for all businesses with bookings -->
         {% for i in available_bookings %}
 
         <tr>
             <td>{{i.location}}</td>
             <td><a href='{{i.get_absolute_url}}'>{{i.business_name}}</a></td>
-            <!-- this loops through avaible bookings -->
+            <!-- this loops through avaible bookings within each business -->
             {% for available_bookings in i.available_bookings.all %}
             <td>{{available_bookings}}</td>
             {% endfor %}

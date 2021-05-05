@@ -26,6 +26,7 @@ class Customer(models.Model):
         return self.name
 
 @receiver(post_save, sender=User)
+# automatically creates a Customer when a user is created
 def Create_User_Profile(sender, instance, created, **kwargs):
     if created:
         Customer.objects.create(user=instance)

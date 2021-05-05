@@ -38,9 +38,11 @@
             <table class="table">
                 <tr>
                     <th>
+                        <!-- returns number of booking in the cart -->
                         <h5>Bookings: <strong>{{customerbooking.get_cart_items}}</strong></h5>
                     </th>
                     <th>
+                        <!-- returns the total cost for the bookings in the customer cart -->
                         <h5>Total:<strong> €{{customerbooking.get_cart_total}}</strong></h5>
                     </th>
                     <th>
@@ -65,6 +67,7 @@
                         <th>Total</th>
                     </tr>
                 </thead>
+                <!-- loops through all the items (which are the addded bookings) in the cart -->
                 {% for item in items %}
                 <tr>
                     <td>{{item.booking.business}}</td>
@@ -72,9 +75,10 @@
                     <td>€{{item.booking.price}}</td>
                     <td class="quantity">{{item.quantity}}
                         <div class="quantity">
+                            <!-- add quantity button -->
                             <img data-booking="{{item.booking.id}}" data-action="add" class="chg-quantity update-cart"
                                 src="{% static  'GymNow_site/images/arrow-up.png' %}">
-
+                            <!-- decrease quantity button -->
                             <img data-booking="{{item.booking.id}}" data-action="remove"
                                 class="chg-quantity update-cart"
                                 src="{% static  'GymNow_site/images/arrow-down.png' %}">

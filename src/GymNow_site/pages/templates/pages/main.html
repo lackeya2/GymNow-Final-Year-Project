@@ -13,6 +13,7 @@
     <script type="text/javascript">
         var user = '{{request.user}}'
         // this code was taken from the django documentation on csrf tokens https://docs.djangoproject.com/en/3.2/ref/csrf/
+        // uses cookies to track customers cart data across all pages
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
