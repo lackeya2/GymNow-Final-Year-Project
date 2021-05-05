@@ -4,6 +4,19 @@
 
 {% load static %}
 
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+        background-image: url({% static 'GymNow_site/images/available-bookings.jpg' %});
+    }
+</style>
+
 <br>
 
 <!-- Profile Content Container -->
@@ -11,8 +24,8 @@
     <div class="container">
         <div class="row profile">
             <!-- Left Display -->
-            <div class="col-md-6">
-                <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="col-md-12">
+                <div class="card shadow-lg p-6 mb-2 bg-white rounded">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
                             <!-- Displays Profile Picture linked to User Account -->
