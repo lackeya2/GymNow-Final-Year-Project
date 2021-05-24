@@ -2,10 +2,12 @@
 
 
 
-Luke Attride, luke.attride2@mail.dcu.ie, 17373693
 
-Adrian Lackey, adrian.lackey2@mail.dcu.ie, 17466892
+Student: Luke Attride, luke.attride2@mail.dcu.ie, 17373693
 
+Student: Adrian Lackey, adrian.lackey2@mail.dcu.ie, 17466892
+
+Supervisor: Cathal Gurrin, cathal.gurrin@dcu.ie 
 
 
 
