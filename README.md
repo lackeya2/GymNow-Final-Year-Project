@@ -1,15 +1,11 @@
 # CA472 template repo
 
 
-Student Name
-Student Email
-Student Number
-Luke Attride
-luke.attride2@mail.dcu.ie
-17373693
-Adrian Lackey
-adrian.lackey2@mail.dcu.ie
-17466892
+
+Luke Attride, luke.attride2@mail.dcu.ie, 17373693
+Adrian Lackey, adrian.lackey2@mail.dcu.ie, 17466892
+
+
 
 
 
